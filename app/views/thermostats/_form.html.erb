@@ -1,0 +1,35 @@
+<%= form_validated_for(@thermostat) do |f| %>
+  <% if @thermostat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@thermostat.errors.count, "error") %> prohibited this thermostat from being saved:</h2>
+
+      <ul>
+      <% @thermostat.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :serial %><br>
+    <%= f.text_field :serial, :maxlength => '10' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :temperature %><br>
+    <%= f.number_field :temperature %>
+  </div>
+
+<div class="field">
+    <%= f.label :location %><br>
+
+<%= f.select :location_id, options_for_select(@locations.collect{ |u| [u.name, u.id] }) %>
+</div>
+
+  <div class="actions">
+
+     <%= f.submit (@thermostat.new_record? ? 'Registrar' : 'Editar'), :class => 'btn btn-primary' %>
+
+  </div>
+<% end %>

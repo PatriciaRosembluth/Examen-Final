@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Dia de la semana:</strong>
+  <%= @planner.week_day %>
+</p>
+
+<p>
+  <strong>Temperatura:</strong>
+  <%= @planner.temperature %>
+</p>
+
+<p>
+  <strong>Franja:</strong>
+  <%= @planner.schedule %>
+</p>
+
+
+<%= link_to 'Editar', edit_planner_path(@planner), :class => 'btn btn-info' %>|
+<%= link_to 'Atrás', thermostats_path,:class => 'btn btn-default' %>
+
+

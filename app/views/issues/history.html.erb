@@ -1,0 +1,35 @@
+<h1>Lista de problemas</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><center>Termostato</center></th>
+      <th><center>Descripcion del problema</center></th>
+      <th><center>Estado</center></th>
+      <th><center>Resolucion</center></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @issues.each do |issue| %>
+      <tr>
+        <td><center><%= issue.thermostat.serial %></center></td>
+        <td><center><%= issue.description %></center></td>
+        <td id="status <%=issue.id%>"><center><%= issue.status %></center></td>
+        <td><center><%= issue.resolution %></center></td>
+        <td><%= link_to 'Ver', issue, :class => 'btn btn-mini btn-default' %></td>
+        <%if issue.status != 'RESUELTO' && issue.status != 'CANCELADO' %>
+        <td class="cancel_button" id="<%=issue.id%>"><%= link_to 'Cancelar', change_status_issue_path(issue), :class => 'btn btn-mini btn-primary'%></td>
+        <td><%= link_to 'Editar', edit_issue_path(issue), :class => 'btn btn-mini btn-info' %></td>
+        <td><%= link_to 'Eliminar', issue, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-mini btn-danger'   %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Volver', thermostats_path, class: "btn btn-default" %>

@@ -1,0 +1,30 @@
+<%= form_for(@alarm) do |f| %>
+  <% if @alarm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@alarm.errors.count, "error") %> prohibited this alarm from being saved:</h2>
+
+      <ul>
+      <% @alarm.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :temp_max, 'Tempertura maxima' %><br>
+    <%= f.number_field :temp_max %>
+  </div>
+  <div class="field">
+    <%= f.label :temp_min, 'Temperatura minima' %><br>
+    <%= f.number_field :temp_min %>
+  </div>
+  <div class="field">
+    <%= f.label :trigger_time, 'Timepo maximo de espera' %><br>
+    <%= f.number_field :trigger_time %>
+  </div>
+  <%= f.hidden_field :location_id%>
+  <div class="actions">
+    <%= f.submit 'Registrar alarma' , :class => 'btn btn-primary' %>
+  </div>
+<% end %>

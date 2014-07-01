@@ -1,0 +1,32 @@
+<%=form_validated_for(@planner) do |f| %>
+  <% if @planner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@planner.errors.count, "error") %> prohibited this planner from being saved:</h2>
+
+      <ul>
+      <% @planner.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :week_day, "Dia de la semana" %><br>
+    <%= f.select :week_day, options_for_select([["Lunes"], ["Martes"], ["Miercoles"], ["Jueves"], ["Viernes"], ["Sabado"], ["Domingo"]]) %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :temperature, "Temperatura" %><br>
+    <%= f.number_field :temperature %>
+  </div>
+  <div class="field">
+    <%= f.label :schedule, "Franja horaria" %><br>
+    <%= f.select :schedule, options_for_select([["Madrugada"], ["Mañana"], ["Tarde"], ["Noche"]]) %>
+  </div>
+  <%= f.hidden_field :thermostat_id%>
+
+  <div class="actions">
+    <p><%= f.submit (@planner.new_record? ? 'Registrar' : 'Editar'), :class => 'btn btn-lg btn-primary' %></p>
+  </div>
+<% end %>

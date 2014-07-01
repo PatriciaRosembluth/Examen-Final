@@ -1,0 +1,40 @@
+<h1>Lista de ubicaciones</h1>
+
+<div align="right">
+<%= link_to 'Nueva Ubicacion', new_location_path, :class => 'btn btn-default btn-lg active' %>
+</div>
+<br>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><center>Nombre</center></th>
+      <th><center>Ciudad</center></th>
+      <th><center>Direccion</center></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @locations.each do |location| %>
+      <tr>
+        <td><center><%= location.name %></center></td>
+        <td><center><%= location.city %></center></td>
+        <td><center><%= location.address %></center></td>
+        <td><%= link_to 'Ver', location, :class => 'btn btn-mini btn-default' %></td>
+        <td><%= link_to 'Editar', edit_location_path(location), :class => 'btn btn-mini btn-info' %></td>
+        <td><%= link_to 'Eliminar', location, method: :delete, data: { confirm: 'Esta seguro?' }, :class => 'btn btn-mini btn-danger' %></td>
+        <%if location.alarm == nil%>
+        <td><%= link_to 'Registrar alarma',"/alarms/new/"+location.id.to_s, :class => 'btn btn-mini btn-warning' %></td> 
+        <%else%>
+        <td><%= link_to 'Ver alarma', location.alarm, :class => 'btn btn-mini btn-warning' %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

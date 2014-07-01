@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2014-05-20 12:32:28
+  end_time: 2014-05-20 12:32:28
+  day: MyString
+  max_temperature: 1
+  min_temperature: 1
+  start_date: 2014-05-20
+  end_date: 2014-05-20
+  enable: false
+  termostat_id: 
+
+two:
+  start_time: 2014-05-20 12:32:28
+  end_time: 2014-05-20 12:32:28
+  day: MyString
+  max_temperature: 1
+  min_temperature: 1
+  start_date: 2014-05-20
+  end_date: 2014-05-20
+  enable: false
+  termostat_id: 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Akita Thermostat</title>
+    <%= stylesheet_link_tag "application", media: "all",
+                                           "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash_notifications %>
+      <%= notice %>
+      <%= alert %>
+    </div>
+
+    <!--div class="jumbotron"-->
+      <div class="container">
+        <br><br><br>
+        <%= yield %>
+      </div>
+    <!--/div-->
+    <%= render 'layouts/footer' %>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+<%= form_for @location, :url =>(add_thermostat_path(@location.id.to_s)), :method => 'post' do |f| %>
+<%= select_tag :thermostat,options_from_collection_for_select(Thermostat.all,'id','serial')  %>
+<%=f.submit 'Agregar'%>
+<%end%>

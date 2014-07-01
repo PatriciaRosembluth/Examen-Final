@@ -1,0 +1,24 @@
+<%= form_validated_for(@issue) do |f| %>
+  <% if @issue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
+
+      <ul>
+      <% @issue.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ 
+    <%= f.hidden_field :thermostat_id%>
+  <div class="field">
+    <%= f.label :description, 'Descripcion del problema' %><br>
+    <%= f.text_area :description %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Registrar problema", :class => 'btn btn-primary' %>
+  </div>
+<% end %>

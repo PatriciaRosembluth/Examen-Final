@@ -1,0 +1,22 @@
+<h1>Editar Usuario</h1>
+<div class="col-xs-3">
+<%= form_for @user do |f| %>
+
+  <p><%= f.label :username, "Nombre de Usuario" %><br />
+  <%= f.text_field :username %></p>
+
+  <div><%= f.label :email, "Correo" %><br />
+  <%= f.email_field :email, autofocus: true %></div>
+      
+  <p><%= f.label :password, 'Nueva Contraseña'%>
+  <%= f.password_field :password, :class => 'form-control' %>
+
+  <p><%= f.label :password_confirmation, 'Confirme Contraseña' %>
+  <%= f.password_field :password_confirmation, :class => 'form-control' %>
+
+  <p><%= f.submit (@user.new_record? ? 'Crear' : 'Guardar cambios'), :class => 'btn btn-lg btn-info' %></p>
+
+<% end %>
+</div>
+
+<%= link_to 'Atrás', users_path, class: "btn btn-default" %>

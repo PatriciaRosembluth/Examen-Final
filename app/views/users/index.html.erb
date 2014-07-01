@@ -1,0 +1,37 @@
+<h1>Lista de usuarios</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><center>Nombre</center></th>
+      <th><center>Cuenta</center></th>
+      <th><center>Fecha de Creacion</center></th>
+      <th><center>Rol</center></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><center><%= user.username%></center></td>
+        <td><center><%= user.email%></center></td>
+        <td><center><%= user.created_at.strftime("%d/%m/%Y")%></center></td>
+        <%if user.role == 1 %>
+          <td><center>Administrador</center></td>
+        <%else%>
+          <td><center>Usuario</center></td>
+        <%end%>
+        <td><%= link_to 'Cambiar Rol', change_role_user_path(user), :class => 'btn btn-mini'   %></td>
+        <%if user.enable == true%>
+        <td><%= link_to 'Bloquear', change_enable_user_path(user), :class => 'btn btn-mini btn-warning'   %></td>
+        <%else%>
+        <td><%= link_to 'Desbloquear', change_enable_user_path(user), :class => 'btn btn-mini'   %></td>
+        <%end%>
+        <td><%= link_to 'Editar', edit_user_path(user), :class => 'btn btn-mini btn-info'  %></td>
+        <td><%= link_to 'Eliminar', user_path(user), method: :delete, data: { confirm: 'Seguro?' }, :class => 'btn btn-mini btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

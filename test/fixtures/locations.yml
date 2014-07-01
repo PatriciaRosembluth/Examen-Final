@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  property: MyString
+  room: MyString
+  city: MyString
+  address: MyString
+  thermostat_id: 
+  user_id: 
+
+two:
+  property: MyString
+  room: MyString
+  city: MyString
+  address: MyString
+  thermostat_id: 
+  user_id: 

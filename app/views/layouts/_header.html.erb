@@ -1,0 +1,40 @@
+<header class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="navbar-inner">
+    <div class="container">
+      <div class="navbar-header">
+        <a href=" <%= root_path %>"> <img align= "left" src="\images\akita_logo.png" alt="rss feed" width="290" /> </a>
+      </div>
+      <!--%= link_to "Akita Thermostat", root_url , id: "logo" %-->
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <%if current_user%>
+            <%if current_user.enable == true%>
+              <%if current_user.role == 1 %>
+                <li> <%= link_to "Usuarios", '/users' %> </li>
+                <li> <%= link_to "Problemas", '/issues' %> </li>
+                <li> <%= link_to "Termostatos", '/thermostats' %> </li>
+              <%else%>
+                 <li> <%= link_to 'Locaciones', locations_path %> </li>
+                 <li> <%= link_to 'Termostatos', thermostats_path %> </li>
+              <%end%>
+            <%else%>
+              <li><%= link_to "Intentar más tarde", destroy_user_session_path, method: :delete %></li>
+            <%end%>
+          <%end%>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <%if current_user %>
+            <li><%= link_to current_user.username.capitalize, edit_registration_path(current_user) %></li>
+            <li><%= link_to "Salir", destroy_user_session_path, method: :delete %></li>
+          <%else%>
+            <li> <%= link_to "Registrarse", new_user_registration_path %> </li>
+            <li> <%= link_to "Iniciar sesión", new_user_session_path %> </li>
+          <%end%>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</header>
+

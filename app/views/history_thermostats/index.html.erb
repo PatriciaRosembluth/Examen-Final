@@ -1,0 +1,31 @@
+<h1>Historial de temperaturas</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><center>Termostato</center></th>
+      <th><center>Temperatura</center></th>
+      <th><center>Humedad</center></th>
+      <th><center>Exterior</center></th>
+      <th><center>Consumo Normal</center></th>
+      <th><center>Consumo Actual</center></th>
+      <th><center>Ahorro</center></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @history_thermostats.each do |history_thermostat| %>
+      <tr>
+        <td><center><%= history_thermostat.thermostat.serial %></center></td>
+        <td><center><%= history_thermostat.temperature %></center></td>
+        <td><center><%= history_thermostat.humedad %></center></td>
+        <td><center><%= history_thermostat.exterior %></center></td>
+        <td><center><%= history_thermostat.consumoN %></center></td>
+        <td><center><%= history_thermostat.consumoA %></center></td>
+        <td><center><%= history_thermostat.ahorro %></center></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

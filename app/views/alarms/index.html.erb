@@ -1,0 +1,29 @@
+<h1>Listing alarms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Temperatura maxima</th>
+      <th>Temperatura minima</th>
+      <th>Tiempo maximo de espera</th>
+      <th>Nombre de usuario</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @alarms.each do |alarm| %>
+      <tr>
+        <td><%= alarm.temp_max %></td>
+        <td><%= alarm.temp_min %></td>
+        <td><%= alarm.trigger_time %></td>
+        <td><%= link_to 'Ver', alarm, :class => "btn btn-mini" %></td>
+        <td><%= link_to 'Editar', edit_alarm_path(alarm), :class => "btn btn-mini btn-info" %></td>
+        <td><%= link_to 'Eliminar', alarm, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-mini btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

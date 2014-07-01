@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+<H1><%= @location.name %></H1>
+
+<p>
+  <strong>Ciudad:</strong>
+  <%= @location.city %>
+</p>
+
+<p>
+  <strong>Direccion:</strong>
+  <%= @location.address %>
+</p>
+
+
+<h1><center>Lista de termostatos</center></h1>
+
+<div align="right">
+<%= link_to 'Agregar Termostato', new_thermostat_path, :class => 'btn btn-default btn-lg active' %>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><center>Serial</center></th>
+      <th><center>Temperatura</center></th>
+      <th><center>Humedad</center></th>
+      <th><center>Energia</center></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @location.thermostats.each do |thermostat| %>
+      <tr>
+        <td><center><%= thermostat.serial %></center></td>
+        <td><center><%= thermostat.temperature %></center></td>
+        <td><center><%= thermostat.humidity %></center></td>
+        <td><center><%= thermostat.energy %></center></td>
+        <td><%= link_to 'Ver', thermostat , :class => 'btn btn-mini btn-default'%></td>
+        <td><%= link_to 'Editar', edit_thermostat_path(thermostat),  :class => 'btn btn-mini btn-info' %></td>
+        <td><%= link_to 'Eliminar', thermostat, method: :delete, data: { confirm: 'Está seguro?' }, :class => 'btn btn-mini btn-danger'%></td>
+        <td><%= link_to 'Registrar Planificacion', {:controller => :planners, :action => "new", :id => thermostat.id}, :class =>'btn btn-default btn-lg'%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Editar', edit_location_path(@location), :class => 'btn btn-info' %> |
+<%= link_to 'Atrás', locations_path, :class => 'btn btn-default' %>

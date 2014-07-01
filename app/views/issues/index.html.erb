@@ -1,0 +1,38 @@
+<h1>Lista de problemas</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><center>Termostato</center></th>
+      <th><center>Descripcion del problema</center></th>
+      <th><center>Estado</center></th>
+      <th><center>Resolucion</center></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @issues.each do |issue| %>
+      <tr>
+        <%if issue.status != 'CANCELADO'  %>
+        <td><center><%= issue.thermostat.serial %></center></td>
+        <td><center><%= issue.description %></center></td>
+        <td><center><%= issue.status %></center></td>
+        <td><center><%= issue.resolution %></center></td>
+        <%if issue.status != 'RESUELTO'  %>
+        <td><%= link_to 'Resolver', {:controller => :issues, :action => "resolution", :id => issue.id}, :class => 'btn btn-mini btn-info'  %></td>
+        <%end%>
+        <%if issue.status == 'RESUELTO'  %>
+        <td><%= link_to 'Abrir', open_issue_path(issue), :class => 'btn btn-mini btn-warning'%></td>
+        <%end%>
+        <td><%= link_to 'Eliminar', issue, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-mini btn-danger'   %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Volver', users_path, class: "btn btn-default" %>
