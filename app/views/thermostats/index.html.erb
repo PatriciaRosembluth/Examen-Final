@@ -22,6 +22,7 @@
       <%if current_user.role == 1%>
       <th><center>Usuario</center></th>
       <%end%>
+      <th><center>Pais</center></th>
       <th><center>Serial</center></th>
       <th><center>Temperatura</center></th>
       <th><center>Humedad</center></th>
@@ -35,6 +36,7 @@
         <%if current_user.role == 1%>
         <td><center><%= thermostat.user.username %></center></td>
         <%end%>
+        <td><center><%= thermostat.country.name %></center></td>
         <td><center><%= thermostat.serial %></center></td>
         <td><center><%= thermostat.temperature %></center></td>
         <td><center><%= thermostat.humidity %></center></td>
