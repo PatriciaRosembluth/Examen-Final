@@ -43,26 +43,23 @@ class HistoryThermostatsController < ApplicationController
 
   end
 
+  def asignar_valores(historia)
+    historia.thermostat_id = params[:thermostat_history][:thermostat].first
+    historia.temperature = params[:thermostat_history][:temperature]
+    historia.humedad = params[:thermostat_history][:humedad]
+    historia.exterior = params[:thermostat_history][:exterior]
+    historia.consumoN = params[:thermostat_history][:consumoN]
+    historia.consumoA = params[:thermostat_history][:consumoA]
+    historia.ahorro = @history_thermostat.consumoA - @history_thermostat.consumoN
+  end
+
   def create
     @history_thermostat = HistoryThermostat.new
-    @history_thermostat.thermostat_id = params[:thermostat_history][:thermostat].first
-    @history_thermostat.temperature = params[:thermostat_history][:temperature]
-    @history_thermostat.humedad = params[:thermostat_history][:humedad]
-    @history_thermostat.exterior = params[:thermostat_history][:exterior]
-    @history_thermostat.consumoN = params[:thermostat_history][:consumoN]
-    @history_thermostat.consumoA = params[:thermostat_history][:consumoA]
-    @history_thermostat.ahorro = @history_thermostat.consumoA - @history_thermostat.consumoN
-    
-
-
+    asignar_valores(@history_thermostat)
     respond_to do |format|
       if @history_thermostat.save
-         alarm
-        format.html { redirect_to @history_thermostat, notice: 'History thermostat was successfully created.' }
+        format.html { redirect_to @history_thermostat, notice: 'Historial de termostato creado exitosamente' }
         format.json { render action: 'show', status: :created, location: @history_thermostat }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @history_thermostat.errors, status: :unprocessable_entity }
       end
     end
   end

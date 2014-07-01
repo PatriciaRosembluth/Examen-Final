@@ -18,20 +18,24 @@ class ThermostatsController < ApplicationController
 
 def devise
 end
+
+def clima_actual
+  ciudad = @thermostat.location.city
+  ciudad = ciudad.gsub(" ","_") + ",Bolivia"
+  responseClim = HTTParty.get('http://api.openweathermap.org/data/2.5/weather?q=' + ciudad + '&lang=sp')
+  @tempMax =  responseClim["main"]["temp_max"]
+  @tempMin =  responseClim["main"]["temp_min"]
+  @hum =  responseClim["main"]["humidity"]
+  @description = responseClim["weather"][0]["description"]
+  alarm
+end
   # GET /thermostats/1
   # GET /thermostats/1.json
 def show
   if @thermostat.user_id != current_user.id
     redirect_to '/'
   else
-    ciudad = @thermostat.location.city
-    ciudad = ciudad.gsub(" ","_") + ",Bolivia"
-    responseClim = HTTParty.get('http://api.openweathermap.org/data/2.5/weather?q=' + ciudad + '&lang=sp')
-    @tempMax =  responseClim["main"]["temp_max"]
-    @tempMin =  responseClim["main"]["temp_min"]
-    @hum =  responseClim["main"]["humidity"]
-    @description = responseClim["weather"][0]["description"]
-    alarm
+    clima_actual
   end
 end
 
@@ -52,7 +56,6 @@ end
     @history_thermostats = HistoryThermostat.all
     @thermostat = Thermostat.find(params[:id])
     @history_thermostats = @thermostat.history_thermostats
-
     @last_history = @history_thermostats.last
     if @last_history != nil
       @alarm = @last_history.thermostat.location.alarm
@@ -77,9 +80,6 @@ end
       if @thermostat.save
         format.html { redirect_to @thermostat, notice: 'El termostato fue creado satisfactoriamente.' }
         format.json { render action: 'show', status: :created, location: @thermostat }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @thermostat.errors, status: :unprocessable_entity }
       end
     end
   end
