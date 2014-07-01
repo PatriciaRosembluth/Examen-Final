@@ -1,6 +1,7 @@
 class Thermostat < ActiveRecord::Base
   belongs_to :user
   belongs_to :location
+  belongs_to :country
   has_many :history_thermostats
   has_many :issues
   has_many :planners
@@ -14,6 +15,14 @@ class Thermostat < ActiveRecord::Base
   validates :temperature, numericality: {:message => "La temperatura solo permite enteros"}
   validates :temperature, numericality: {greater_than: -20, less_than: 60, :message => "La temperatura debe ser mayor a -20 y menor a 60" }
 
-
+def correspondeApais(pais)
+      parametros = pais.split(' ')
+      parametros.each do |parametro|
+        if self.country.name.downcase.include?(parametro.downcase)
+          return true
+        end
+      end
+      false
+    end
   
 end

@@ -66,6 +66,22 @@ locacion4.address = 'Tercer Anillo'
 locacion4.user_id = 3
 locacion4.save!
 
+#Paises
+pais1 = Country.new  #country_id = 1
+pais1.name = 'Bolivia'
+pais1.code = 'BO'
+pais1.save! 
+
+pais2 = Country.new #country_id = 2
+pais2.name = 'Alemania'
+pais2.code = 'Al'
+pais2.save!
+
+pais3 = Country.new #country_id = 3
+pais3.name = 'Colombia'
+pais3.code = 'Co'
+pais3.save!
+
 #termostatos usuario1
 
 termostato1 = Thermostat.new #thermostat_id = 1
@@ -75,6 +91,7 @@ termostato1.energy = 0
 termostato1.humidity = 0
 termostato1.user_id = 2
 termostato1.location_id = 1
+termostato1.country_id = 1
 termostato1.save!
 
 termostato2 = Thermostat.new #thermostat_id = 2
@@ -84,6 +101,7 @@ termostato2.energy = 0
 termostato2.humidity = 0
 termostato2.user_id = 2
 termostato2.location_id = 1
+termostato2.country_id = 2
 termostato2.save!
 
 termostato3 = Thermostat.new #thermostat_id = 3
@@ -93,6 +111,7 @@ termostato3.energy = 0
 termostato3.humidity = 0
 termostato3.user_id = 2
 termostato3.location_id = 1
+termostato3.country_id = 3
 termostato3.save!
 
 
@@ -103,6 +122,7 @@ termostato4.energy = 0
 termostato4.humidity = 0
 termostato4.user_id = 2
 termostato4.location_id = 2
+termostato4.country_id = 1
 termostato4.save!
 
 termostato5 = Thermostat.new #thermostat_id = 5
@@ -112,6 +132,7 @@ termostato5.energy = 0
 termostato5.humidity = 0
 termostato5.user_id = 2
 termostato5.location_id = 2
+termostato5.country_id = 2
 termostato5.save!
 
 termostato6 = Thermostat.new #thermostat_id = 6
@@ -121,6 +142,7 @@ termostato6.energy = 0
 termostato6.humidity = 0
 termostato6.user_id = 2
 termostato6.location_id = 2
+termostato6.country_id = 3
 termostato6.save!
 
 #thermostatos usuario2
@@ -132,6 +154,7 @@ termostato7.energy = 0
 termostato7.humidity = 0
 termostato7.user_id = 3
 termostato7.location_id = 3
+termostato7.country_id = 1
 termostato7.save!
 
 termostato8 = Thermostat.new #thermostat_id = 8
@@ -141,6 +164,7 @@ termostato8.energy = 0
 termostato8.humidity = 0
 termostato8.user_id = 3
 termostato8.location_id = 3
+termostato8.country_id = 2
 termostato8.save!
 
 termostato9 = Thermostat.new #thermostat_id = 9
@@ -150,6 +174,7 @@ termostato9.energy = 0
 termostato9.humidity = 0
 termostato9.user_id = 3
 termostato9.location_id = 3
+termostato9.country_id = 3
 termostato9.save!
 
 termostato10 = Thermostat.new #thermostat_id = 10
@@ -159,6 +184,7 @@ termostato10.energy = 0
 termostato10.humidity = 0
 termostato10.user_id = 3
 termostato10.location_id = 4
+termostato10.country_id = 1
 termostato10.save!
 
 termostato11 = Thermostat.new #thermostat_id = 11
@@ -168,6 +194,7 @@ termostato11.energy = 0
 termostato11.humidity = 0
 termostato11.user_id = 3
 termostato11.location_id = 4
+termostato11.country_id = 2
 termostato11.save!
 
 termostato12 = Thermostat.new #thermostat_id = 12
@@ -177,6 +204,7 @@ termostato12.energy = 0
 termostato12.humidity = 0
 termostato12.user_id = 3
 termostato12.location_id = 4
+termostato12.country_id = 3
 termostato12.save!
 
 

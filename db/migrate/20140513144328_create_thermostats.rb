@@ -6,6 +6,7 @@ class CreateThermostats < ActiveRecord::Migration
       t.integer :energy
       t.references :user, index: true
       t.references :location, index: true
+      t.references :country, index: true
       t.timestamps
     end
   end

@@ -19,6 +19,27 @@ class ThermostatsController < ApplicationController
 def devise
 end
 
+def search
+    @thermostats = buscar(params[:name])
+    render 'index'
+  end
+
+  def buscar(pais)
+      items = Array.new 
+      aux = Thermostat.all
+      if pais != "" && pais != nil
+          aux.each do |item|
+          if (item.correspondeApais(pais))
+              items.push(item)
+          end
+        end
+      else
+          items = aux
+      end
+      return items
+    end
+
+
 def clima_actual
   ciudad = @thermostat.location.city
   ciudad = ciudad.gsub(" ","_") + ",Bolivia"
@@ -43,11 +64,14 @@ end
   def new
     @thermostat = Thermostat.new
     @locations = current_user.locations
+    @countries = Country.all
   end
 
   # GET /thermostats/1/edit
   def edit
+    @thermostat = Thermostat.find(params[:id])
     @locations = current_user.locations
+    @countries = Country.all
   end
 
   # POST /thermostats
@@ -70,6 +94,7 @@ end
   def create
     @thermostat = Thermostat.new(thermostat_params)
     @locations = current_user.locations
+    @countries = Country.all
     @thermostat.user = current_user
     @thermostat.energy = 0
     @thermostat.humidity = 0
@@ -88,6 +113,7 @@ end
   # PATCH/PUT /thermostats/1.json
   def update
     @locations = current_user.locations
+    @countries = Country.all
     respond_to do |format|
       if @thermostat.update(thermostat_params)
         format.html { redirect_to @thermostat, notice: 'El termostato fue actualizado satisfactoriamente.' }
@@ -118,7 +144,7 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def thermostat_params
 
-      params.require(:thermostat).permit(:serial, :temperature, :user_id, :current_temperature, :location_id, :humildity, :energy )
+      params.require(:thermostat).permit(:serial, :temperature, :user_id, :current_temperature, :location_id, :humildity, :energy, :country_id )
 
     end
 end

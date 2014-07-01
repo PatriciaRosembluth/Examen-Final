@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h1><center>Nombre:</center></h1>
+  <h3><center><%= @country.name %></center></h3>
+</p>
+
+<p>
+  <h1><center>Codigo:</center></h1>
+  <h3><center><%= @country.code %></center></h3>
+</p>
+
+<%= link_to 'Edit', edit_country_path(@country), :class => 'btn btn-info' %> |
+<%= link_to 'Back', countries_path, :class => 'btn btn-default' %>

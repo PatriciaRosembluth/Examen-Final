@@ -12,19 +12,25 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :serial %><br>
+    <%= f.label :serial ,'Serie' %><br>
     <%= f.text_field :serial, :maxlength => '10' %>
   </div>
 
   <div class="field">
-    <%= f.label :temperature %><br>
+    <%= f.label :temperature, 'Temperatura' %><br>
     <%= f.number_field :temperature %>
   </div>
 
 <div class="field">
-    <%= f.label :location %><br>
+    <%= f.label :location, 'Ubicacion' %><br>
 
 <%= f.select :location_id, options_for_select(@locations.collect{ |u| [u.name, u.id] }) %>
+</div>
+
+<div class="field">
+    <%= f.label :country, 'Pais' %><br>
+
+<%= f.select :country_id, options_for_select(@countries.collect{ |u| [u.name, u.id] }) %>
 </div>
 
   <div class="actions">

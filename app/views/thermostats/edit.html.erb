@@ -1,5 +1,44 @@
 <h1>Editar termostato</h1>
 
-<%= render 'form' %>
+<%= form_validated_for(@thermostat) do |f| %>
+  <% if @thermostat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@thermostat.errors.count, "error") %> prohibited this thermostat from being saved:</h2>
+
+      <ul>
+      <% @thermostat.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :serial ,'Serie' %><br>
+    <%= f.text_field :serial, :maxlength => '10' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :temperature, 'Temperatura' %><br>
+    <%= f.number_field :temperature %>
+  </div>
+
+<div class="field">
+    <%= f.label :location, 'Ubicacion' %><br>
+<%= f.collection_select(:location_id, Location.all, :id, :name)%>
+</div>
+
+<div class="field">
+    <%= f.label :country, 'Pais' %><br>
+
+    <%= f.collection_select(:country_id, Country.all, :id, :name)%>
+</div>
+
+  <div class="actions">
+
+     <%= f.submit (@thermostat.new_record? ? 'Registrar' : 'Editar'), :class => 'btn btn-primary' %>
+
+  </div>
+<% end %>
 
 <%= link_to 'Atrás', thermostats_path, class: "btn btn-default" %>

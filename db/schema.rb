@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140605153015) do
+ActiveRecord::Schema.define(version: 20140701171150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 20140605153015) do
   end
 
   add_index "alarms", ["location_id"], name: "index_alarms_on_location_id", using: :btree
+
+  create_table "countries", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "history_thermostats", force: true do |t|
     t.integer  "temperature"
@@ -86,6 +93,7 @@ ActiveRecord::Schema.define(version: 20140605153015) do
     t.integer  "energy"
     t.integer  "user_id"
     t.integer  "location_id"
+    t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "current_temperature"
@@ -96,6 +104,7 @@ ActiveRecord::Schema.define(version: 20140605153015) do
     t.float    "current_cost"
   end
 
+  add_index "thermostats", ["country_id"], name: "index_thermostats_on_country_id", using: :btree
   add_index "thermostats", ["location_id"], name: "index_thermostats_on_location_id", using: :btree
   add_index "thermostats", ["user_id"], name: "index_thermostats_on_user_id", using: :btree
 

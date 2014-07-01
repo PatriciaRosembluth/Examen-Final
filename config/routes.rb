@@ -1,5 +1,7 @@
 AkitaThermostat::Application.routes.draw do
 
+  resources :countries
+
   resources :issues
 
   resources :alarms
@@ -30,6 +32,8 @@ AkitaThermostat::Application.routes.draw do
   get 'users/change_role/:id' => 'users#change_role', :as => 'change_role_user'
   get 'users/change_enable/:id' => 'users#change_enable', :as => 'change_enable_user'
   get 'users/delete/:id' => 'users#destroy', :as => 'delete_user'
+
+  get 'thermostats/search' => 'thermostats#search'
   
  
   get "registrations/edit"
